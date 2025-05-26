@@ -2,8 +2,32 @@ import { useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import RemoveButton from "../RemoveButton/RemoveButton";
 
-export default function Item({ img, name, price }) {
+export default function Item({ img, name, price, orderItems, setOrderItems }) {
     const [toggle, setToggle] = useState(true);
+
+    function handleAddItem() {
+        setOrderItems(
+            {
+                ...orderItems,
+                items: [
+                    ...orderItems.items,
+                    { name, price }
+                ]
+            }
+        )
+        setToggle(!toggle);
+    }
+
+    function handleRemoveItem() {
+        setOrderItems(
+            {
+                ...orderItems,
+                items: orderItems.items.filter(item => item.name !== name)
+            }
+        )
+        setToggle(!toggle);
+    }
+
 
     return (
         <>
@@ -19,9 +43,9 @@ export default function Item({ img, name, price }) {
                     </div>
                 </div>
                 {
-                    toggle ? <AddButton toggle={toggle} setToggle={setToggle} /> : <RemoveButton toggle={toggle} setToggle={setToggle} />
+                    toggle ? <AddButton onHandleClick={handleAddItem} /> : <RemoveButton onHandleClick={handleRemoveItem} />
                 }
-            </div>
+            </div >
         </>
     )
 }
