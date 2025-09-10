@@ -45,8 +45,7 @@ select {
   min-width: 100px;
   border: none;
   outline: none;
-  border-radius: 10px;
-  padding: 4px;
+  padding: 5px;
 }
 
 .items-container {
