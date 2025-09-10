@@ -1,7 +1,22 @@
+import { useState } from 'react';
 import burger from '../../../assets/hamburger.svg';
 import ToggleButton from '../../common/ToggleButton';
 
-export default function HamburgerItem() {
+export default function HamburgerItem({ totalPrice, setTotalPrice }) {
+  const [selectItem, setSelectItem] = useState(true);
+
+  function handleSelectItem() {
+    setSelectItem(!selectItem);
+    setTotalPrice(totalPrice + 300);
+    console.log(totalPrice);
+  }
+
+  function handleRemoveItem() {
+    setSelectItem(!selectItem);
+    setTotalPrice(totalPrice - 300);
+    console.log(totalPrice);
+  }
+
   return (
     <>
       <div className="bg-gray-700 bg-opacity-30 rounded-md p-3 mb-3 flex justify-between items-center hover:bg-opacity-40 transition-all duration-300">
@@ -14,7 +29,11 @@ export default function HamburgerItem() {
             <p className="text-xs text-gray-400">BDT 300</p>
           </div>
         </div>
-        <ToggleButton />
+        <ToggleButton
+          handleSelectItem={handleSelectItem}
+          handleRemoveItem={handleRemoveItem}
+          selectItem={selectItem}
+        />
       </div>
     </>
   );

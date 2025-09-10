@@ -1,27 +1,39 @@
-import ChickenNuggetsItem from './ChickenNuggetsItem'
-import HamburgerItem from './HamburgerItem'
-import PizzaSlicesItem from './PizzaSlicesItem'
-import SubmarineSandwichItem from './SubmarineSandwichItem'
+import ChickenNuggetsItem from './ChickenNuggetsItem';
+import HamburgerItem from './HamburgerItem';
+import PizzaSlicesItem from './PizzaSlicesItem';
+import SubmarineSandwichItem from './SubmarineSandwichItem';
 
-export default function ChooseItems() {
+export default function ChooseItems({ totalPrice, setTotalPrice }) {
   return (
     <>
       <div className="mb-4">
         <label className="block text-sm font-medium mb-2">Choose Items</label>
         <div className="items-container">
           {/* <!-- Item 1 --> */}
-          <HamburgerItem />
+          <HamburgerItem
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+          />
 
           {/* <!-- Item 2 --> */}
-          <ChickenNuggetsItem />
+          <ChickenNuggetsItem
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+          />
 
           {/* <!-- Item 3 --> */}
-          <SubmarineSandwichItem />
+          <SubmarineSandwichItem
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+          />
 
           {/* <!-- Item 4 --> */}
-          <PizzaSlicesItem />
+          <PizzaSlicesItem
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+          />
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import ChooseItems from './chooseItems/ChooseItems'
-import NameInputField from './NameInputField'
-import OrderButton from './OrderButton'
+import ChooseItems from './chooseItems/ChooseItems';
+import NameInputField from './NameInputField';
+import OrderButton from './OrderButton';
 
-export default function CreateOrder() {
+export default function CreateOrder({ totalPrice, setTotalPrice }) {
   return (
     <>
       <div className="bg-cardbg rounded-lg p-6 h-[calc(100vh_-_130px)]">
@@ -16,11 +16,11 @@ export default function CreateOrder() {
         <NameInputField />
 
         {/* <!-- Choose Items --> */}
-        <ChooseItems />
+        <ChooseItems totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
 
         {/* <!-- Place Order Button --> */}
-        <OrderButton />
+        <OrderButton totalPrice={totalPrice} />
       </div>
     </>
-  )
+  );
 }
