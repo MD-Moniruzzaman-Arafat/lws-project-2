@@ -3,7 +3,12 @@ import HamburgerItem from './HamburgerItem';
 import PizzaSlicesItem from './PizzaSlicesItem';
 import SubmarineSandwichItem from './SubmarineSandwichItem';
 
-export default function ChooseItems({ totalPrice, setTotalPrice }) {
+export default function ChooseItems({
+  totalPrice,
+  setTotalPrice,
+  itemCount,
+  setItemCount,
+}) {
   return (
     <>
       <div className="mb-4">
@@ -13,24 +18,32 @@ export default function ChooseItems({ totalPrice, setTotalPrice }) {
           <HamburgerItem
             totalPrice={totalPrice}
             setTotalPrice={setTotalPrice}
+            itemCount={itemCount}
+            setItemCount={setItemCount}
           />
 
           {/* <!-- Item 2 --> */}
           <ChickenNuggetsItem
             totalPrice={totalPrice}
             setTotalPrice={setTotalPrice}
+            itemCount={itemCount}
+            setItemCount={setItemCount}
           />
 
           {/* <!-- Item 3 --> */}
           <SubmarineSandwichItem
             totalPrice={totalPrice}
             setTotalPrice={setTotalPrice}
+            itemCount={itemCount}
+            setItemCount={setItemCount}
           />
 
           {/* <!-- Item 4 --> */}
           <PizzaSlicesItem
             totalPrice={totalPrice}
             setTotalPrice={setTotalPrice}
+            itemCount={itemCount}
+            setItemCount={setItemCount}
           />
         </div>
       </div>

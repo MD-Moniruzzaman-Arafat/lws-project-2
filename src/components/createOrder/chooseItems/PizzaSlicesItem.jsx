@@ -2,18 +2,25 @@ import { useState } from 'react';
 import pizza from '../../../assets/pizza.svg';
 import ToggleButton from '../../common/ToggleButton';
 
-export default function PizzaSlicesItem({ totalPrice, setTotalPrice }) {
+export default function PizzaSlicesItem({
+  totalPrice,
+  setTotalPrice,
+  itemCount,
+  setItemCount,
+}) {
   const [selectItem, setSelectItem] = useState(true);
 
   function handleSelectItem() {
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice + 300);
+    setItemCount(itemCount + 1);
     console.log(totalPrice);
   }
 
   function handleRemoveItem() {
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice - 300);
+    setItemCount(itemCount - 1);
     console.log(totalPrice);
   }
 

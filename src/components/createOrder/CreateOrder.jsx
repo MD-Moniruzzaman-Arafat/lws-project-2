@@ -1,8 +1,30 @@
+import { useState } from 'react';
 import ChooseItems from './chooseItems/ChooseItems';
 import NameInputField from './NameInputField';
 import OrderButton from './OrderButton';
 
-export default function CreateOrder({ totalPrice, setTotalPrice }) {
+export default function CreateOrder({
+  totalPrice,
+  setTotalPrice,
+  itemCount,
+  setItemCount,
+  orderItem,
+  setOrderItem,
+}) {
+  const [username, setUserName] = useState('');
+
+  function handlePlaceOrder() {
+    const order = {
+      ...orderItem,
+      name: username,
+      totalAmount: totalPrice,
+      totalItem: itemCount,
+      orderStatus: 'PENDING',
+    };
+    setOrderItem(order);
+  }
+  console.log(orderItem);
+
   return (
     <>
       <div className="bg-cardbg rounded-lg p-6 h-[calc(100vh_-_130px)]">
@@ -13,13 +35,21 @@ export default function CreateOrder({ totalPrice, setTotalPrice }) {
         </p>
 
         {/* <!-- Customer Name Input --> */}
-        <NameInputField />
+        <NameInputField username={username} setUserName={setUserName} />
 
         {/* <!-- Choose Items --> */}
-        <ChooseItems totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
+        <ChooseItems
+          totalPrice={totalPrice}
+          setTotalPrice={setTotalPrice}
+          itemCount={itemCount}
+          setItemCount={setItemCount}
+        />
 
         {/* <!-- Place Order Button --> */}
-        <OrderButton totalPrice={totalPrice} />
+        <OrderButton
+          totalPrice={totalPrice}
+          handlePlaceOrder={handlePlaceOrder}
+        />
       </div>
     </>
   );

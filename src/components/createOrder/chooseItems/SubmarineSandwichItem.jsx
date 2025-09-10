@@ -2,18 +2,25 @@ import { useState } from 'react';
 import sandwich from '../../../assets/submarine.svg';
 import ToggleButton from '../../common/ToggleButton';
 
-export default function SubmarineSandwichItem({ totalPrice, setTotalPrice }) {
+export default function SubmarineSandwichItem({
+  totalPrice,
+  setTotalPrice,
+  itemCount,
+  setItemCount,
+}) {
   const [selectItem, setSelectItem] = useState(true);
 
   function handleSelectItem() {
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice + 300);
+    setItemCount(itemCount + 1);
     console.log(totalPrice);
   }
 
   function handleRemoveItem() {
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice - 300);
+    setItemCount(itemCount - 1);
     console.log(totalPrice);
   }
 

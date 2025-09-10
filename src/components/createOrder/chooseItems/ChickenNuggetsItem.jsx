@@ -2,18 +2,25 @@ import { useState } from 'react';
 import chicken from '../../../assets/chicken.svg';
 import ToggleButton from '../../common/ToggleButton';
 
-export default function ChickenNuggetsItem({ totalPrice, setTotalPrice }) {
+export default function ChickenNuggetsItem({
+  totalPrice,
+  setTotalPrice,
+  itemCount,
+  setItemCount,
+}) {
   const [selectItem, setSelectItem] = useState(true);
 
   function handleSelectItem() {
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice + 300);
+    setItemCount(itemCount + 1);
     console.log(totalPrice);
   }
 
   function handleRemoveItem() {
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice - 300);
+    setItemCount(itemCount - 1);
     console.log(totalPrice);
   }
 
