@@ -1,6 +1,7 @@
 import './App.css'
 import CreateOrder from './components/createOrder/CreateOrder'
 import Navbar from './components/navbar/Navbar'
+import OrderReport from './components/orderReport/OrderReport'
 import OrderSummary from './components/orderSummary/OrderSummary'
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
           <div className="md:col-span-2 h-[calc(100vh_-_130px)]">
             {/* order summary */}
             <OrderSummary />
+
+            {/* order report */}
+            <OrderReport />
           </div>
         </div>
       </div>
