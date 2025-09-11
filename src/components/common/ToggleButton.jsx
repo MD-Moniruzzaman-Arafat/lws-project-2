@@ -6,7 +6,7 @@ export default function ToggleButton({
   return (
     <>
       {selectItem ? (
-        <button
+        <div
           onClick={handleSelectItem}
           className="w-8 h-8 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300"
         >
@@ -22,9 +22,9 @@ export default function ToggleButton({
               clipRule="evenodd"
             />
           </svg>
-        </button>
+        </div>
       ) : (
-        <button
+        <div
           onClick={handleRemoveItem}
           className="w-8 h-8 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300"
         >
@@ -40,7 +40,7 @@ export default function ToggleButton({
               clipRule="evenodd"
             />
           </svg>
-        </button>
+        </div>
       )}
     </>
   );

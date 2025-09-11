@@ -10,10 +10,13 @@ export default function CreateOrder({
   setItemCount,
   orderItem,
   setOrderItem,
+  totalOrder,
+  setTotalOrder,
 }) {
   const [username, setUserName] = useState('');
 
-  function handlePlaceOrder() {
+  function handlePlaceOrder(e) {
+    e.preventDefault();
     const order = {
       ...orderItem,
       name: username,
@@ -22,6 +25,7 @@ export default function CreateOrder({
       orderStatus: 'PENDING',
     };
     setOrderItem(order);
+    setTotalOrder([...totalOrder, order]);
   }
   console.log(orderItem);
 
@@ -34,22 +38,21 @@ export default function CreateOrder({
           their requirements.
         </p>
 
-        {/* <!-- Customer Name Input --> */}
-        <NameInputField username={username} setUserName={setUserName} />
+        <form onSubmit={handlePlaceOrder}>
+          {/* <!-- Customer Name Input --> */}
+          <NameInputField username={username} setUserName={setUserName} />
 
-        {/* <!-- Choose Items --> */}
-        <ChooseItems
-          totalPrice={totalPrice}
-          setTotalPrice={setTotalPrice}
-          itemCount={itemCount}
-          setItemCount={setItemCount}
-        />
+          {/* <!-- Choose Items --> */}
+          <ChooseItems
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+            itemCount={itemCount}
+            setItemCount={setItemCount}
+          />
 
-        {/* <!-- Place Order Button --> */}
-        <OrderButton
-          totalPrice={totalPrice}
-          handlePlaceOrder={handlePlaceOrder}
-        />
+          {/* <!-- Place Order Button --> */}
+          <OrderButton totalPrice={totalPrice} />
+        </form>
       </div>
     </>
   );

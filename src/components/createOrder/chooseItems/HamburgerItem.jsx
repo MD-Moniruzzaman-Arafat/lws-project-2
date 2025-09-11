@@ -10,14 +10,16 @@ export default function HamburgerItem({
 }) {
   const [selectItem, setSelectItem] = useState(true);
 
-  function handleSelectItem() {
+  function handleSelectItem(e) {
+    e.stopPropagation();
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice + 300);
     setItemCount(itemCount + 1);
     console.log(totalPrice);
   }
 
-  function handleRemoveItem() {
+  function handleRemoveItem(e) {
+    e.stopPropagation();
     setSelectItem(!selectItem);
     setTotalPrice(totalPrice - 300);
     setItemCount(itemCount - 1);
