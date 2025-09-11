@@ -15,6 +15,7 @@ function App() {
     orderStatus: '',
   });
   const [totalOrder, setTotalOrder] = useState([]);
+  const [pendingOrder, setPendingOrder] = useState([]);
 
   return (
     <>
@@ -33,10 +34,12 @@ function App() {
             setOrderItem={setOrderItem}
             totalOrder={totalOrder}
             setTotalOrder={setTotalOrder}
+            pendingOrder={pendingOrder}
+            setPendingOrder={setPendingOrder}
           />
           <div className="md:col-span-2 h-[calc(100vh_-_130px)]">
             {/* order summary */}
-            <OrderSummary totalOrder={totalOrder} />
+            <OrderSummary totalOrder={totalOrder} pendingOrder={pendingOrder} />
 
             {/* order report */}
             <OrderReport totalOrder={totalOrder} />

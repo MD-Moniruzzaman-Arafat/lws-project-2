@@ -12,6 +12,8 @@ export default function CreateOrder({
   setOrderItem,
   totalOrder,
   setTotalOrder,
+  pendingOrder,
+  setPendingOrder,
 }) {
   const [username, setUserName] = useState('');
 
@@ -26,6 +28,7 @@ export default function CreateOrder({
     };
     setOrderItem(order);
     setTotalOrder([...totalOrder, order]);
+    setPendingOrder([...pendingOrder, order]);
   }
   console.log(orderItem);
 

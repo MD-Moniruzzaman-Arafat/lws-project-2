@@ -2,7 +2,7 @@ import TotalOrder from '../orderSummary/TotalOrder.jsx';
 import DeliveredOrder from './DeliveredOrder';
 import PendingOrder from './PendingOrder';
 
-export default function OrderSummary({ totalOrder }) {
+export default function OrderSummary({ totalOrder, pendingOrder }) {
   return (
     <>
       <div>
@@ -12,7 +12,7 @@ export default function OrderSummary({ totalOrder }) {
           <TotalOrder totalOrder={totalOrder} />
 
           {/* <!-- Pending Orders --> */}
-          <PendingOrder />
+          <PendingOrder pendingOrder={pendingOrder} />
 
           {/* <!-- Delivered Orders --> */}
           <DeliveredOrder />
