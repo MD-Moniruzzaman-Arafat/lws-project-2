@@ -1,5 +1,4 @@
 export default function TotalOrder({ totalOrder }) {
-  console.log(totalOrder);
   return (
     <>
       <div className="bg-cardbg rounded-lg p-4 relative overflow-hidden">

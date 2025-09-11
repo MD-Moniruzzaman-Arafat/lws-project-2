@@ -3,6 +3,10 @@ import DeliveredOrder from './DeliveredOrder';
 import PendingOrder from './PendingOrder';
 
 export default function OrderSummary({ totalOrder, pendingOrder }) {
+  // Filter delivered orders
+  const deliveredOrder = totalOrder.filter(
+    (order) => order.orderStatus === 'DELIVERY'
+  );
   return (
     <>
       <div>
@@ -15,7 +19,7 @@ export default function OrderSummary({ totalOrder, pendingOrder }) {
           <PendingOrder pendingOrder={pendingOrder} />
 
           {/* <!-- Delivered Orders --> */}
-          <DeliveredOrder />
+          <DeliveredOrder deliveredOrder={deliveredOrder} />
         </div>
       </div>
     </>

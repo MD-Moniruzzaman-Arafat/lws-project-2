@@ -30,7 +30,6 @@ export default function CreateOrder({
     setTotalOrder([...totalOrder, order]);
     setPendingOrder([...pendingOrder, order]);
   }
-  console.log(orderItem);
 
   return (
     <>

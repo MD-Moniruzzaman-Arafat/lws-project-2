@@ -1,4 +1,9 @@
-export default function OrderReportCard({ order, index, onDelete }) {
+export default function OrderReportCard({
+  order,
+  index,
+  onDelete,
+  onDelivery,
+}) {
   return (
     <>
       <tr className="border-t border-gray-700">
@@ -7,7 +12,11 @@ export default function OrderReportCard({ order, index, onDelete }) {
         <td className="py-3">{order.totalItem}</td>
         <td className="py-3">{order.totalAmount}</td>
         <td className="py-3">
-          <span className="text-red-500">{order.orderStatus}</span>
+          {order.orderStatus === 'PENDING' ? (
+            <span className="text-red-500">{order.orderStatus}</span>
+          ) : (
+            <span className="text-green-500">{order.orderStatus}</span>
+          )}
         </td>
         <td className="py-3">
           <button
@@ -16,7 +25,10 @@ export default function OrderReportCard({ order, index, onDelete }) {
           >
             Delete
           </button>
-          <button className="bg-gray-800 hover:bg-green-600 text-xs px-3 py-1 rounded-full transition-colors duration-300">
+          <button
+            onClick={() => onDelivery(order.name)}
+            className="bg-gray-800 hover:bg-green-600 text-xs px-3 py-1 rounded-full transition-colors duration-300"
+          >
             DELIVER
           </button>
         </td>

@@ -1,14 +1,53 @@
+import { useState } from 'react';
 import OrderReportCard from './OrderReportCard';
 
 export default function OrderReport({
   totalOrder,
   setTotalOrder,
+  pendingOrder,
   setPendingOrder,
 }) {
+  const [filter, setFilter] = useState('All');
+
   function handleDelete(name) {
     const orders = totalOrder.filter((order) => order.name !== name);
     setTotalOrder(orders);
     setPendingOrder(orders);
+  }
+
+  function handleDelivery(name) {
+    // Remove from pendingOrder
+    const updatedPendingOrders = pendingOrder.filter(
+      (order) => order.name !== name
+    );
+    setPendingOrder(updatedPendingOrders);
+
+    // Find the order and update its status
+    const deliveryOrder = pendingOrder.find((order) => order.name === name);
+    if (!deliveryOrder) return;
+    const modifyOrder = {
+      ...deliveryOrder,
+      orderStatus: 'DELIVERY',
+    };
+
+    // Add to totalOrder as delivered
+    const updatedTotalOrders = totalOrder.map((order) =>
+      order.name === name ? modifyOrder : order
+    );
+    setTotalOrder(updatedTotalOrders);
+  }
+  console.log(totalOrder);
+
+  // Filter orders based on filter state
+  let filteredOrders = totalOrder;
+  if (filter === 'Pending') {
+    filteredOrders = totalOrder.filter(
+      (order) => order.orderStatus === 'PENDING'
+    );
+  } else if (filter === 'Delivered') {
+    filteredOrders = totalOrder.filter(
+      (order) => order.orderStatus === 'DELIVERY'
+    );
   }
 
   return (
@@ -32,10 +71,14 @@ export default function OrderReport({
             >
               <path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z" />
             </svg>
-            <select className="appearance-none bg-zinc-900 accent-orange-600 border-none outline-none rounded-sm">
-              <option>All</option>
-              <option>Pending</option>
-              <option>Delivered</option>
+            <select
+              className="appearance-none bg-zinc-900 accent-orange-600 border-none outline-none rounded-sm"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            >
+              <option value="All">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Delivered">Delivered</option>
             </select>
           </div>
         </div>
@@ -54,12 +97,13 @@ export default function OrderReport({
               </thead>
               <tbody className="text-sm">
                 {/* <!-- Row 1 --> */}
-                {totalOrder?.map((order, index) => (
+                {filteredOrders?.map((order, index) => (
                   <OrderReportCard
                     key={order.name}
                     order={order}
                     index={index}
                     onDelete={handleDelete}
+                    onDelivery={handleDelivery}
                   />
                 ))}
               </tbody>

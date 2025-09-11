@@ -1,7 +1,6 @@
 export default function NameInputField({ userName, setUserName }) {
   function handleChange(e) {
     setUserName(e.target.value);
-    console.log(e.target.value);
   }
 
   return (
