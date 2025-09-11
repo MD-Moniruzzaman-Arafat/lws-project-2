@@ -1,6 +1,16 @@
 import OrderReportCard from './OrderReportCard';
 
-export default function OrderReport({ totalOrder }) {
+export default function OrderReport({
+  totalOrder,
+  setTotalOrder,
+  setPendingOrder,
+}) {
+  function handleDelete(name) {
+    const orders = totalOrder.filter((order) => order.name !== name);
+    setTotalOrder(orders);
+    setPendingOrder(orders);
+  }
+
   return (
     <>
       <div>
@@ -49,6 +59,7 @@ export default function OrderReport({ totalOrder }) {
                     key={order.name}
                     order={order}
                     index={index}
+                    onDelete={handleDelete}
                   />
                 ))}
               </tbody>

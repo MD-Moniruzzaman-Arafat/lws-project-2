@@ -42,7 +42,12 @@ function App() {
             <OrderSummary totalOrder={totalOrder} pendingOrder={pendingOrder} />
 
             {/* order report */}
-            <OrderReport totalOrder={totalOrder} />
+            <OrderReport
+              totalOrder={totalOrder}
+              setTotalOrder={setTotalOrder}
+              pendingOrder={pendingOrder}
+              setPendingOrder={setPendingOrder}
+            />
           </div>
         </div>
       </div>
